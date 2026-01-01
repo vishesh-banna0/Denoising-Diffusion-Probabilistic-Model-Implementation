@@ -48,28 +48,22 @@ The figure below shows example images from the dataset after preprocessing.
 The forward diffusion process is defined as a Markov chain that gradually adds
 Gaussian noise to the data:
 
-\[
-q(x_t \mid x_{t-1}) = \mathcal{N} \left(
-x_t;\sqrt{1 - \beta_t} \, x_{t-1}, \beta_t \mathbf{I}
-\right)
-\]
+q(x_t | x_{t-1}) = N( √(1 − β_t) · x_{t−1}, β_t I )
 
-where \(\beta_t\) is a small variance scheduled over timesteps.
+where β_t is a small variance scheduled over timesteps.
 
-By composing these transitions, the distribution of a noisy sample at timestep
-\(t\) can be written in closed form as:
+By composing these transitions, the distribution of a noisy sample at timestep t
+can be written in closed form as:
 
-\[
-x_t = \sqrt{\bar{\alpha}_t} \, x_0 + \sqrt{1 - \bar{\alpha}_t} \, \epsilon,
-\quad \epsilon \sim \mathcal{N}(0, \mathbf{I})
-\]
+x_t = √(ᾱ_t) · x_0 + √(1 − ᾱ_t) · ε ,   ε ~ N(0, I)
 
 where:
-- \(\alpha_t = 1 - \beta_t\)
-- \(\bar{\alpha}_t = \prod_{s=1}^{t} \alpha_s\)
+- α_t = 1 − β_t
+- ᾱ_t = ∏_{s=1}^{t} α_s
 
-This closed-form expression allows direct sampling of \(x_t\) from the original
-data \(x_0\) without iterating through all intermediate steps.
+This closed-form expression allows direct sampling of x_t from the original data
+x_0 without iterating through all intermediate steps.
+
 
 ---
 
